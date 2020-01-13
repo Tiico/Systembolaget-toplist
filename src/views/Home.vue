@@ -1,15 +1,17 @@
 <template>
   <div class="home">
-    <h1>Toplist:</h1>
+    <ToplistComponent></ToplistComponent>
   </div>
 </template>
 
 <script>
+import ToplistComponent from '../components/ToplistComponent';
 export default {
   name: "home",
-  components: {},
+  components: {
+    ToplistComponent,
+  },
   computed: {
-
   }
 };
 </script>

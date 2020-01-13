@@ -17,6 +17,7 @@
     "express-validator": "^6.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.3.2",
+    "node-fetch": "^2.6.0",
     "path": "^0.12.7",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",

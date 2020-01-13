@@ -10,7 +10,7 @@ deploy:
   provider: heroku
   app: vue-fulltest-app
   api_key:
-    secure: NU0cQ37WLCBIwsZc2FDEwCNhFdkmhGlbD1erxa8wNlCUzwsNTM7r+Ug/YmsKd9X01joOUqDjGmUW2+cTpCO1QeeytzeyA3F1WymAXBlVd4WxPbYeqoGI2hRYMFO4+rHJeEFJP5hHk3ijgu8gPT28nVvVl+4t5ErIUEn4ydcTSL3e/2aT8YUIlSlM0M5ie98x9hM3Fn7lqKRzgdVMOKZrMnJeO/JaqLBIt1Qiz8/LiJpSmBzCGAXXnl83fiH/GHvyk0xGu1qTHczs5x/jJtOHtoYeVYzBMRd2jOulKQJ4qv34JyMKl90xRlqPmUIXdMfOF9oL+mbfsToxJGXCzaCm5F7OmnOSloeJH13ymmq1/D84EU7WPjnheoLD6ojycdFrEmqDLEpjxAtaYB0vmAhjb+w4l8n2q3yk8bNkmou4tZTSFYTqtYvVyCn+apmix7f1Bhkb5Mu2GHGOCOhfNIUzxQSMC1O0673fvYoLI5FaEqxcxA5pu+eHZMB9xv48GGBClof2T9qk+Ve2tL/MMmLjVyOe2wLCNrfgUd28yc4qb7jWNsezDmAKgUfWlJCFu2JAIYKJVrmcsk2TDzCZwR0B2zThAngFlGaj7gbk5J+XbjRTImNjvKFcNcXvP1M3W1dhRflreH/wHATVuve/0JXB4hguGwpkC602PlxbRAoP5II=
+    secure: 
   on:
     repo: degreeproject/vue-fulltest-app
     branch: master

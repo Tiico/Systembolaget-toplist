@@ -1,39 +1,55 @@
 <template>
-  <v-app-bar app dark>
-    <router-link id="header-title" to="/">
-      <v-toolbar-title>Systembolaget Toplist</v-toolbar-title>
-    </router-link>
+  <v-card class="mx-auto" max-width="85%">
+    <v-list v-if="isLoaded">
+      <v-list-item-group mandatory color="indigo">
+        <v-list-item v-for="(item, i) in ListItems" :key="i">
+          <v-list-item-icon>
+            <v-icon v-text="i + 1"></v-icon>
+          </v-list-item-icon>
 
-    <!-- Fills in navbar which moves icons to the right -->
-    <div class="flex-grow-1"></div>
-
-<!--     <v-btn class="navbutton" light to="/recipes">Recipes</v-btn> -->
-
-  </v-app-bar>
+          <v-list-item-content>
+            <v-list-item-title v-text="ListItems[i].ProductNameBold + ' ' + (ListItems[i].ProductNameThin || '')"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+    </v-list>
+  </v-card>
 </template>
 
 <script>
-export default {
-  name: "HeaderComponent",
-  data() {
-    return {};
-  },
-  mounted() {
-  },
-  computed: {
-  },
-  methods: {
-  }
-};
+  import ToplistService from '../services/ToplistService'
+  export default {
+    name: "ToplistComponent",
+    data() {
+      return {
+        ListItems: Array,
+        isLoaded: false,
+      };
+    },
+    mounted() {
+      ToplistService.getToplist()
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log(response)
+        this.ListItems = response.data
+        this.isLoaded = true
+      })
+      // eslint-disable-next-line no-console
+      .catch(console.log)
+    },
+    computed: {},
+    methods: {}
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.navbutton {
-  margin-right: 0.5%;
-}
-#header-title {
-  text-decoration: none;
-  color: white;
-}
+  .navbutton {
+    margin-right: 0.5%;
+  }
+
+  #header-title {
+    text-decoration: none;
+    color: white;
+  }
 </style>
