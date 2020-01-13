@@ -1,9 +1,4 @@
 # Project overview
-This is for a degree project done at the Royal Institute of Technology in Stockholm 2019. The contributers for this assignment are: Nicklas Ockelberg and Niclas Olsson
-
-Continue reading for information about continuing development, or running the application.
-
-Visit the application at: https://vue-fulltest-app.herokuapp.com/
 
 # Running the app
 #### Start in local development
