@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const TOPLIST = "/api/toplist";
+const TOPLIST = "/api/toplist/systembolaget-beer";
 
 
 class ToplistService {

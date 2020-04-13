@@ -2,13 +2,12 @@
 const express = require('express');
 const config = require('../../config');
 const fetch = require("node-fetch");
-/* const toplistService = require('../../integration/toplist-services'); */
 const router = express.Router();
 
 /**
  * GET: Toplist
  */
-router.get('/', async (req, res) => {
+router.get('/systembolaget-beer', async (req, res) => {
   try {
     let url = `https://api-extern.systembolaget.se/product/v1/product/search?SubCategory=Öl`
     fetch(url, {
@@ -20,7 +19,7 @@ router.get('/', async (req, res) => {
     .then(res => res.json())
     .then((data) => {
       let beers = data.Hits
-      console.log(data.Metadata)
+/*       console.log(data.Metadata) */
       res.json(beers);
     })
     .catch(console.log)
@@ -28,9 +27,6 @@ router.get('/', async (req, res) => {
       return res.sendStatus(500);
   }
   });
-/* function filter_beer(event){
-  return event.Category == "Öl"
-} */
 
 
 module.exports = router;
