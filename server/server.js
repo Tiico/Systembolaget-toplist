@@ -23,10 +23,6 @@ app.use('/api/toplist', toplist);
  * the built version of the app located in the build directory.
  */
 if (config.ENV === 'production') {
-
-  // eslint-disable-next-line no-console
-  console.log("Production mode");
-
   app.use(express.static(__dirname + "/../dist/"));
 
   app.get(/.*/, function (req, res) {
