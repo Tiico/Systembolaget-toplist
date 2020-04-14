@@ -13,7 +13,7 @@
           <v-row>
             <v-col cols="4">{{ListItems[i].Volume}} ml</v-col>
             <v-col cols="4">{{ListItems[i].Price}} kr</v-col>
-            <v-col cols="4" v-if="ListItems[i].IsCompletelyOutOfStock && ListItems[i].IsTemporarelyOutOFStock">Out of Stock</v-col>
+            <v-col cols="4" v-if="ListItems[i].IsCompletelyOutOfStock && ListItems[i].IsTemporarelyOutOFStock">Out of stock</v-col>
             <v-col cols="4" v-else>In Stock</v-col>
           </v-row>
           <v-row>
