@@ -1,19 +1,28 @@
 <template>
-  <v-card class="mx-auto" max-width="85%">
-    <v-list v-if="isLoaded">
-      <v-list-item-group mandatory color="indigo">
-        <v-list-item v-for="(item, i) in ListItems" :key="i">
-          <v-list-item-icon>
-            <v-icon v-text="i + 1"></v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title v-text="ListItems[i].ProductNameBold + ' ' + (ListItems[i].ProductNameThin || '')"></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-  </v-card>
+  <v-expansion-panels v-if="isLoaded" hover="true">
+    <v-expansion-panel v-for="(item, i) in ListItems" :key="i">
+      <v-expansion-panel-header>
+        {{i+1 + '. ' + ListItems[i].ProductNameBold + ' ' + (ListItems[i].ProductNameThin || '')}}
+      </v-expansion-panel-header>
+      <v-expansion-panel-content>
+          <v-row>
+            <v-col cols="4">{{ListItems[i].Category + ' - ' + ListItems[i].Style}}</v-col>
+            <v-col cols="4">{{ListItems[i].AlcoholPercentage}} %</v-col>
+            <v-col cols="4"><a :href="'//' + 'www.systembolaget.se/' + ListItems[i].ProductNumber" target="_blank">Systembolaget Link</a></v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="4">{{ListItems[i].Volume}} ml</v-col>
+            <v-col cols="4">{{ListItems[i].Price}} kr</v-col>
+            <v-col cols="4" v-if="ListItems[i].IsCompletelyOutOfStock && ListItems[i].IsTemporarelyOutOFStock">Out of Stock</v-col>
+            <v-col cols="4" v-else>In Stock</v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="6">{{ListItems[i].Usage}}</v-col>
+            <v-col cols="6">{{ListItems[i].Taste}}</v-col>
+          </v-row>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+  </v-expansion-panels>
 </template>
 
 <script>
@@ -24,18 +33,24 @@
       return {
         ListItems: Array,
         isLoaded: false,
+        date: null,
+        trip: {
+          name: '',
+          location: null,
+          start: null,
+          end: null,
+        },
+        locations: ['Australia', 'Barbados', 'Chile', 'Denmark', 'Equador', 'France'],
       };
     },
     mounted() {
       ToplistService.getToplist()
-      .then((response) => {
+        .then((response) => {
+          this.ListItems = response.data
+          this.isLoaded = true
+        })
         // eslint-disable-next-line no-console
-        console.log(response)
-        this.ListItems = response.data
-        this.isLoaded = true
-      })
-      // eslint-disable-next-line no-console
-      .catch(console.log)
+        .catch(console.log)
     },
     computed: {},
     methods: {}
