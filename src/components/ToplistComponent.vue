@@ -1,8 +1,8 @@
 <template>
   <v-expansion-panels v-if="isLoaded" hover>
     <v-expansion-panel v-for="(item, i) in ListItems" :key="i">
-      <ExpansionPanelHeaderComponent :index=i+1 :producer=ListItems[i].ProductNameBold :product=ListItems[i].ProductNameThin></ExpansionPanelHeaderComponent>
-      <ExpansionPanelBodyComponent :index=i+1 :ListItems=ListItems></ExpansionPanelBodyComponent>
+      <ExpansionPanelHeaderComponent :index=i :producer=ListItems[i].ProductNameBold :product=ListItems[i].ProductNameThin></ExpansionPanelHeaderComponent>
+      <ExpansionPanelBodyComponent :index=i :ListItems=ListItems></ExpansionPanelBodyComponent>
     </v-expansion-panel>
   </v-expansion-panels>
 </template>
