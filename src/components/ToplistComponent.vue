@@ -1,47 +1,27 @@
 <template>
-  <v-expansion-panels v-if="isLoaded" hover="true">
+  <v-expansion-panels v-if="isLoaded" hover>
     <v-expansion-panel v-for="(item, i) in ListItems" :key="i">
-      <v-expansion-panel-header>
-        {{i+1 + '. ' + ListItems[i].ProductNameBold + ' ' + (ListItems[i].ProductNameThin || '')}}
-      </v-expansion-panel-header>
-      <v-expansion-panel-content>
-          <v-row>
-            <v-col cols="4">{{ListItems[i].Category + ' - ' + ListItems[i].Style}}</v-col>
-            <v-col cols="4">{{ListItems[i].AlcoholPercentage}} %</v-col>
-            <v-col cols="4"><a :href="'//' + 'www.systembolaget.se/' + ListItems[i].ProductNumber" target="_blank">Systembolaget Link</a></v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="4">{{ListItems[i].Volume}} ml</v-col>
-            <v-col cols="4">{{ListItems[i].Price}} kr</v-col>
-            <v-col cols="4" v-if="ListItems[i].IsCompletelyOutOfStock && ListItems[i].IsTemporarelyOutOFStock">Out of stock</v-col>
-            <v-col cols="4" v-else>In Stock</v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="6">{{ListItems[i].Usage}}</v-col>
-            <v-col cols="6">{{ListItems[i].Taste}}</v-col>
-          </v-row>
-      </v-expansion-panel-content>
+      <ExpansionPanelHeaderComponent :index=i+1 :producer=ListItems[i].ProductNameBold :product=ListItems[i].ProductNameThin></ExpansionPanelHeaderComponent>
+      <ExpansionPanelBodyComponent :index=i :ListItems=ListItems></ExpansionPanelBodyComponent>
     </v-expansion-panel>
   </v-expansion-panels>
 </template>
 
 <script>
   import ToplistService from '../services/ToplistService'
+  import ExpansionPanelHeaderComponent from '../components/ExpansionPanelHeaderComponent'
+  import ExpansionPanelBodyComponent from '../components/ExpansionPanelBodyComponent'
   export default {
     name: "ToplistComponent",
     data() {
       return {
         ListItems: Array,
         isLoaded: false,
-        date: null,
-        trip: {
-          name: '',
-          location: null,
-          start: null,
-          end: null,
-        },
-        locations: ['Australia', 'Barbados', 'Chile', 'Denmark', 'Equador', 'France'],
       };
+    },
+    components: {
+      ExpansionPanelHeaderComponent,
+      ExpansionPanelBodyComponent
     },
     mounted() {
       ToplistService.getToplist()
