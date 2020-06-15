@@ -1,15 +1,15 @@
 <template>
   <div class="home">
-    <ToplistComponent></ToplistComponent>
+    <ListComponent></ListComponent>
   </div>
 </template>
 
 <script>
-import ToplistComponent from '../components/ToplistComponent';
+import ListComponent from '../components/ListComponent';
 export default {
   name: "home",
   components: {
-    ToplistComponent,
+    ListComponent,
   },
   computed: {
   }

@@ -3,7 +3,8 @@ const config = require('./config');
 const path = require('path')
 const bodyParser = require('body-parser');
 
-const toplist = require('./router/api/toplist');
+const systembolaget = require('./router/api/systembolaget');
+const untappd = require('./router/api/untappd');
 
 /* const guard =  require('./helpers/guard'); */
 
@@ -16,7 +17,8 @@ app.use(bodyParser.json());
 /* Authenticates each request */
 /* app.use(/\/api\/.{1,}/, guard);
  */
-app.use('/api/toplist', toplist);
+app.use('/api/systembolaget', systembolaget);
+app.use('/api/untappd', untappd);
 
 /**
  * If NODE_ENV is set to production the server will take responsibility for serving 

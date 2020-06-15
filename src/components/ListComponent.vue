@@ -2,17 +2,17 @@
   <v-expansion-panels v-if="isLoaded" hover>
     <v-expansion-panel v-for="(item, i) in ListItems" :key="i">
       <ExpansionPanelHeaderComponent :index=i :producer=ListItems[i].ProductNameBold :product=ListItems[i].ProductNameThin></ExpansionPanelHeaderComponent>
-      <ExpansionPanelBodyComponent :index=i :ListItems=ListItems></ExpansionPanelBodyComponent>
+      <ExpansionPanelBodyComponent :index=i :SystembolagetProduct=ListItems></ExpansionPanelBodyComponent>
     </v-expansion-panel>
   </v-expansion-panels>
 </template>
 
 <script>
-  import ToplistService from '../services/ToplistService'
+  import ApiService from '../services/ApiService'
   import ExpansionPanelHeaderComponent from '../components/ExpansionPanelHeaderComponent'
   import ExpansionPanelBodyComponent from '../components/ExpansionPanelBodyComponent'
   export default {
-    name: "ToplistComponent",
+    name: "ListComponent",
     data() {
       return {
         ListItems: Array,
@@ -24,7 +24,7 @@
       ExpansionPanelBodyComponent
     },
     mounted() {
-      ToplistService.getToplist()
+      ApiService.getAllBeers()
         .then((response) => {
           this.ListItems = response.data
           this.isLoaded = true

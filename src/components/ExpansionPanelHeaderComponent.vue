@@ -1,6 +1,6 @@
 <template>
   <v-expansion-panel-header>
-    {{index+1 + '. ' + producer+ ' ' + (product || '')}}
+    <b> {{index+1 + '. ' + producer + ' '  }} {{(product || '')}} </b>
   </v-expansion-panel-header>
 </template>
 

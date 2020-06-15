@@ -5,9 +5,9 @@ const fetch = require("node-fetch");
 const router = express.Router();
 
 /**
- * GET: Toplist
+ * GET: List of systembolaget beers
  */
-router.get('/systembolaget-beer', async (req, res) => {
+router.get('/beer-list', async (req, res) => {
   try {
     let url = `https://api-extern.systembolaget.se/product/v1/product/search?SubCategory=Öl`
     fetch(url, {
@@ -19,7 +19,6 @@ router.get('/systembolaget-beer', async (req, res) => {
     .then(res => res.json())
     .then((data) => {
       let beers = data.Hits
-/*       console.log(data.Metadata) */
       res.json(beers);
     })
     .catch(console.log)
@@ -27,6 +26,5 @@ router.get('/systembolaget-beer', async (req, res) => {
       return res.sendStatus(500);
   }
   });
-
 
 module.exports = router;
