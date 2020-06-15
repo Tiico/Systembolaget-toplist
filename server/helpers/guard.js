@@ -41,7 +41,8 @@ function loggedOutAccess(route, method) {
  * a message field with more information.
  */
 async function authenticateToken(token) {
-  return await jwt.verify(token, config.SECRET, (err) => {
+  const secret = process.env.SECRET || config.SECRET;
+  return await jwt.verify(token, secret, (err) => {
     if (err) {
       return {
         success: false,
@@ -123,8 +124,9 @@ function allowedSelfAction(route, method) {
  * @returns {Object} user. With fields 'username'
  */
 async function decodeUsername(token) {
+  const secret = process.env.SECRET || config.SECRET;
   try {
-    const {user} = await jwt.verify(token, config.SECRET);
+    const {user} = await jwt.verify(token, secret);
     return {username: user};
   } catch (err) {
     throw new Error('Error verifying token');

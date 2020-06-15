@@ -9,7 +9,7 @@ const untappd = require('./router/api/untappd');
 /* const guard =  require('./helpers/guard'); */
 
 const app = express();
-const port = config.PORT;
+const port = process.env.PORT || config.PORT;
 
 
 app.use(bodyParser.json());
@@ -24,7 +24,7 @@ app.use('/api/untappd', untappd);
  * If NODE_ENV is set to production the server will take responsibility for serving 
  * the built version of the app located in the build directory.
  */
-if (config.ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || config.ENV === 'production') {
   app.use(express.static(__dirname + "/../dist/"));
 
   app.get(/.*/, function (req, res) {

@@ -8,12 +8,13 @@ const router = express.Router();
  * GET: List of systembolaget beers
  */
 router.get('/beer-list', async (req, res) => {
+  const key = process.env.SYSTEMBOLAGET_KEY || config.SYSTEMBOLAGET_KEY;
   try {
     let url = `https://api-extern.systembolaget.se/product/v1/product/search?SubCategory=Öl`
     fetch(url, {
       method: 'GET',
       headers: {
-        'Ocp-Apim-Subscription-Key': config.SYSTEMBOLAGET_KEY,
+        'Ocp-Apim-Subscription-Key': key,
       }
     })
     .then(res => res.json())
